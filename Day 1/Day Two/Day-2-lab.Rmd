@@ -1,0 +1,76 @@
+---
+title: "Lab 2"
+author: "Gloria"
+date: "2022-12-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(dslabs)
+ds_theme_set()
+```
+
+```{r}
+data("gapminder")
+tidy_datasa <- gapminder %>% 
+  filter(country %in% c("Botswana","Namibia","Angola","South Africa","Lesotho")) %>%
+             select(country, year, fertility,gdp, population)
+ head(tidy_datasa) 
+  
+              
+
+
+```{r}
+data("gapminder")
+tidy_data <- gapminder %>% 
+             filter(country %in% c("South Korea", "Germany")) %>%
+             select(country, year, fertility)
+head(tidy_data)
+```
+
+
+
+##  Introduction
+As its name suggests, the Factoshiny package uses shiny technology to produce a graphical interface of the
+FactoMineR package in the form of an html page (see figure 1). Users can fill out different fields to fine tune
+their analyses. Once the fields are completed, the analyses are conducted instantly and provide the chosen
+graphs. The following code indicates how Factoshiny can be used to carry out a PCA.
+```{r}
+ library(Factoshiny)
+data(decathlon)
+res.shiny <- PCAshiny(decathlon)
+```
+
+Then the interface is used to choose the parameters of the PCA analysis as well as the parameters of the graphical outputs. Cursors enable users to change the extent to which objects are selected using representation
+quality or contribution and other cursors can be used to change the size of the font used to label the graph. The graphs and outputs are updated immediately, which makes these selections easier. 
+
+It is also possible to first perform the PCA analysis and then to use the PCA outputs in order to modify
+the graphs.
+```{r}
+res.pca <- PCA(decathlon, quanti.sup=11:12, quali.sup=13, graph=FALSE)
+res.shiny <- PCAshiny(res.pca)
+
+```
+It is also possible to reuse the object resulting from Factoshiny in order to further modify the graphs, using
+the configuration described previously:
+```{r}
+res.shiny2 <- PCAshiny(res.shiny)
+
+```
+
+The functions CAshiny, MCAshiny and MFAshiny operate on exactly the same principle. From a certain point of view, the Factoshiny package is a natural evolution of the RcmdrPlugin.FactoMineR package: compared to its
+predecessor, Factoshiny includes the latest graphical updates in the FactoMineR package, it is more user-friendly, and in particular, it enables the user to handle and explore data directly. In addition to its FactoMineR interfacing capabilities and its ability to effortlessly create complex graphs, the Factoshiny package can also generate the code used to construct the graphs.
+
+2 The functions of the Factoshiny package
+Several functions are available according to the dataset and the nature of the active variables.
+Nature of active variables Method Function
+* continuous Principal Component Analysis PCAshiny
+* contingency table Correspondence Analysis CAshiny
+* qualitative Multiple Correspondence Analysis MCAshiny
+* Group of variables Multiple Factor Analysis MFAshiny
+* Clustering HCPCshiny
+Here's [You can see this video which is in French:][Link] [link](https://www.youtube.com/watch?v=4T9tDX4aVS4/)

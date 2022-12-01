@@ -1,0 +1,40 @@
+---
+title: "Day 2 activity"
+author: "Gloria"
+date: "2022-12-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(dslabs)
+ds_theme_set()
+```
+
+```{r}
+data("gapminder")
+tidy_datasa <- gapminder %>% 
+  filter(country %in% c("Botswana","Namibia","Angola","South Africa","Lesotho")) %>%
+             select(country, year, fertility,gdp, population)
+ head(tidy_datasa) 
+```
+ 
+```{r, warning=FALSE}
+tidy_datasa %>% ggplot(aes(year, fertility, color = country)) +
+              geom_point()
+```
+  
+```
+Let's explore
+
+```{r}
+
+res.tidy_datasa <- PCAshiny(tidy_datasa)
+summary(res.tidy_datasa)
+
+```
+

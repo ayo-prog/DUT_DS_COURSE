@@ -1,0 +1,55 @@
+---
+title: "Activities"
+author: "Gloria"
+date: "2022-12-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(dslabs)
+ds_theme_set()
+```
+
+Load the data **gapminder**
+
+
+**Explore the Data**
+
+**1** Create a dataset from name **tidy_datasa** ("Botswana","Namibia","Angola","South Africa","Lesotho"). Use the filter and select function. ANd the head function.
+
+```{r}
+
+```
+
+*** 2 Use ggplot to visualise your new data using (year, fertility, gdp, color = country)
+ 
+```{r, warning=FALSE}
+tidy_datasa %>% ggplot(aes(year, fertility, gdp, color = country)) +
+              geom_point()
+```
+  
+Let's explore
+
+
+**3** Explore fertility across South Africa and Zimbabwe and name it `tidy_dsz`
+
+```{r}
+
+
+```
+**4** Visualise the `tidy_dsz`
+
+```{r, warning=FALSE}
+
+```
+**5** Use the Factorshiny function perform pca on the gapminder dataset dealing with the missing value. Motivate on the option selected to deal with missing value. 
+
+```{r}
+
+
+```
